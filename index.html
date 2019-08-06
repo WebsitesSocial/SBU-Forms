@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>SBU Forms - test</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body style="background-image: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);">
+    <!-- Start your project here-->
+    <div style="height: 100vh">
+      <div class="flex-center flex-column">
+        <!-- Default form subscription -->
+        <form class="text-center border border-light p-5" action="#!" style="background:#fff; height: 69vh; overflow-y: auto">
+          <p class="h4 mb-4">Subscribe to our newsletter</p>
+
+          <p>
+            Join our mailing list. We'll update you with all the news from your Local.
+            <hr />
+
+          </p>
+          <!-- Name -->
+          <input
+            type="text"
+            id="first-name"
+            class="form-control mb-2"
+            placeholder="First Name"
+          />
+          <!-- Last Name -->
+          <input
+          type="text"
+          id="defaultSubscriptionFormPassword"
+          class="form-control mb-2"
+          placeholder="Last Name"
+        />       
+
+          <!-- Email -->
+          <input
+            type="email"
+            id="email"
+            class="form-control mb-2"
+            placeholder="E-mail"
+          />
+
+          <!-- Telephone -->
+          <input
+          type="tel"
+          id="tel"
+          class="form-control mb-2"
+          placeholder="Mobile No."
+        />
+
+          <!--- DOB -->
+          <input placeholder="Date of Birth" type="text" id="DOB" class="form-control datepicker mb-2" />
+
+          <!-- Post Code -->
+          <input
+          type="number"
+          id="post-code"
+          class="form-control mb-2"
+          placeholder="Post Code"
+        />
+
+        <!-- Venue Tags -->
+        <div>
+          <select class="mdb-select md-form" id="Venue Tags" multiple>
+            <option value="" disabled selected>Select your Interests</option>
+            <option value="1">Dining</option>
+            <option value="2">Entertainment</option>
+            <option value="3">Sports</option>
+            <option value="4">What's On</option>
+            <option value="5">Bars</option>
+          </select>
+        </div>
+
+        <!-- Consent-->
+        <div class="mb-2">
+          <input type="checkbox" class="custom-control-input" id="Consent" checked>
+          <label class="custom-control-label" for="Consent">I agree to the terms and conditions an that I am over 18</label> <br />
+        </div>
+        <div>
+          <input type="checkbox" class="custom-control-input mb-4 left" id=" montys" >
+          <label class="custom-control-label" for="montys">I am a Monty's Member</label>
+        </div>
+        
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block mb-3 mt-3" type="submit">Submit</button>
+
+        <!-- Form Type -->
+          <input
+            type="text"
+            id="form-type"
+            class="form-control mb-2"
+            placeholder="Form Type - Hidden"
+          />
+
+        <!-- Venue Id -->
+            <input
+            type="text"
+            id="Venue ID"
+            class="form-control mb-2"
+            placeholder="Venue ID -  Hidden"
+          />
+        <!-- Tagged As -->
+            <input
+            type="text"
+            id="tagged-as"
+            class="form-control mb-2"
+            placeholder="Tagged as - Hidden"
+          />
+        <!-- Campaign Tag -->
+            <input
+            type="text"
+            id="form-type"
+            class="form-control mb-2"
+            placeholder="Campaign Tag - Hidden"
+          />
+
+        <!-- Form ID -->
+            <input
+            type="text"
+            id="form-type"
+            class="form-control mb-2"
+            placeholder="Form ID - Hidden"
+          />
+        <!-- Sign Up Date -->
+            <input placeholder="Sign Up date - Hidden" type="text" id="DOB" class="form-control datepicker mb-4" />
+
+
+        </form>
+        <!-- Default form subscription -->
+
+        <h5 class="animated fadeIn mb-3 mt-3">
+          Thank you for your patronage. We're glad you're with us.
+        </h5>
+      </div>
+    </div>
+    <!-- Start your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Data Picker Initialization -->
+    <script>$('.datepicker').pickadate();</script>
+  </body>
+</html>
