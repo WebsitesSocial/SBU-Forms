@@ -19,6 +19,67 @@
     <link href="css/mdb.min.css" rel="stylesheet" />
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet" />
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $(".submit").click(function() {
+    alert('form click');
+                    var CustomerFirstName = $("#CustomerFirstName").val();
+                    var CustomerLastName = $("#CustomerLastName").val();
+                    var Phone = $("#Phone").val();
+                    var Postcode = $("#Postcode").val();
+                    var CustomerEmail = $("#CustomerEmail").val();
+                     var dataString = 'CustomerFirstName=' + CustomerFirstName + '&CustomerLastName=' + CustomerLastName + '&Phone=' + Phone + '&Postcode=' + Postcode + '&CustomerEmail=' + CustomerEmail;
+                     console.log(dataString);
+                     var myObject = new Object();
+                      myObject.CustomerFirstName = CustomerFirstName;
+                      myObject.CustomerLastName = CustomerLastName;
+                      myObject.Phone = Phone;
+                      myObject.Postcode = Postcode;
+                      myObject.CustomerEmail = CustomerEmail;
+                   // var dataString = 'CustomerFirstName=' + CustomerFirstName + '&CustomerLastName=' + CustomerLastName + '&Phone=' + Phone + '&Postcode=' + Postcode + '&CustomerEmail=' + CustomerEmail;
+                    //alert(myObject);
+
+                    console.log(myObject);
+                    var accountInfo = {
+                    "CustomerFirstName": CustomerFirstName,
+                    "CustomerLastName": CustomerLastName,
+                    "Phone": Phone,
+                    "Postcode": Postcode,
+                    "CustomerEmail": CustomerEmail
+                    };
+                    if (CustomerFirstName == '' || Postcode == '' || Phone == '' || CustomerEmail == '') {
+                        $('.success').fadeOut(200).hide();
+    
+                        $('.error').fadeOut(200).show();
+    
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: "https://mc7l7fypk60zp-h7jf6n349dqp54.rest.marketingcloudapis.com/messaging/v1/messageDefinitionSends/key:45632/send",
+                            headers: {
+                            'Authorization': "Bearer " + eyJhbGciOiJIUzI1NiIsImtpZCI6IjEiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJac0pHRlBPZERLcFNZTjdjR2lkanVGSDIiLCJjbGllbnRfaWQiOiI3ajNmcWowbjBucTdrd2dmNGE5NmE4ZGIiLCJlaWQiOjEwMDAxNDU0Miwic3RhY2tfa2V5IjoiUzEwIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.T-m43B8mOB5jU-V-wiK3BEwM_XXu3Ym3BEdMresw3h4.Qc8c5n86iUpHJfFRFOxDQatHnzGv_ALOJjEA8l2M0nRXHlrh3bptUYmq64uCkM118XNJiVvPQ0TMTcBNOpftu1N9-faRYWTw2k6nBBF3S5ZkiwDqQ0gZiNsWFI_6HxfyvS83BZbW448PWK8MKD4zVQIp6K-XAngKY3Eae03U9ro3tEfhP0b,
+                            'Content-Type': 'application/json'
+                            },
+                            crossDomain: true,
+                            data: JSON.stringify(accountInfo),
+                            dataType: 'json',
+                            success: function(responseData, status, xhr) {
+                            console.log(responseData);
+                            },
+                            error: function(request, status, error) {
+                            console.log(request.responseText);
+                            }
+                        });
+    
+                    }
+    
+                    return false;
+                });
+    
+            });
+        </script>
   </head>
 
   <body style="background-image: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);">
@@ -26,7 +87,7 @@
     <div style="height: 100vh">
       <div class="flex-center flex-column">
         <!-- Default form subscription -->
-        <form class="text-center border border-light p-5" action="#!" style="background:rgba(253,255,255,0.9); height: 80vh; overflow-y: auto">
+        <form autocomplete="off" enctype="multipart/form-data" method="post" name="form" class="text-center border border-light p-5" style="background:rgba(253,255,255,0.9); height: 80vh; overflow-y: auto">
           <p class="h4 mb-4">Subscribe to our newsletter</p>
 
           <p>
@@ -37,14 +98,14 @@
           <!-- Name -->
           <input
             type="text"
-            id="first-name"
+            id="CustomerFirstName"
             class="form-control mb-2"
             placeholder="First Name"
           />
           <!-- Last Name -->
           <input
           type="text"
-          id="defaultSubscriptionFormPassword"
+          id="CustomerLastName"
           class="form-control mb-2"
           placeholder="Last Name"
         />       
@@ -52,7 +113,7 @@
           <!-- Email -->
           <input
             type="email"
-            id="email"
+            id="CustomerEmail"
             class="form-control mb-2"
             placeholder="E-mail"
           />
@@ -60,86 +121,68 @@
           <!-- Telephone -->
           <input
           type="tel"
-          id="tel"
+          id="Phone"
           class="form-control mb-2"
           placeholder="Mobile No."
         />
 
           <!--- DOB -->
-          <input placeholder="Date of Birth" type="text" id="DOB" class="form-control datepicker mb-2" />
+          <!-- <input placeholder="Date of Birth" type="text" id="DOB" class="form-control datepicker mb-2" /> -->
 
           <!-- Post Code -->
           <input
           type="number"
-          id="post-code"
+          id="Postcode"
           class="form-control mb-2"
           placeholder="Post Code"
         />
-
-        <!-- Venue Tags -->
-        <div>
-          <select class="mdb-select md-form" id="Venue Tags" multiple>
-            <option value="" disabled selected>Select your Interests</option>
-            <option value="1">Dining</option>
-            <option value="2">Entertainment</option>
-            <option value="3">Sports</option>
-            <option value="4">What's On</option>
-            <option value="5">Bars</option>
-          </select>
-        </div>
-
-        <!-- Consent-->
-        <div class="mb-2">
-          <input type="checkbox" class="custom-control-input" id="Consent" checked>
-          <label class="custom-control-label" for="Consent">I agree to the terms and conditions an that I am over 18</label> <br />
-        </div>
-        <div>
-          <input type="checkbox" class="custom-control-input mb-4 left" id=" montys" >
-          <label class="custom-control-label" for="montys">I am a Monty's Member</label>
-        </div>
         
         <!-- Sign in button -->
-        <button class="btn btn-info btn-block mb-3 mt-3" type="submit">Submit</button>
-
-        <!-- Form Type -->
+        <div class="buttons">
+          <input type="submit" value="Submit" style=" background:#0060a1; color:#FFFFFF; font-size:14px; border:1px solid #0060a1; margin-left:12px" class="submit" /><span class="error" style="display:none"> Please Enter Valid Data</span><span class="success" style="display:none"> Registration Successfully.......... Click To <a href="http://9lessons.blogspot.com" style="color:#0066CC; font-weight:bold">http://9lessons.blogspot.com</a></span>
+      </div>
+        <!-- <button class="btn btn-info btn-block mb-3 mt-3" type="submit">Submit</button> -->
+        <span class="error" style="display:none"> Please Enter Valid Data</span>
+        <span class="success" style="display:none"> Registration Successfully</span>
+        <!-- Form Type
           <input
             type="text"
             id="form-type"
             class="form-control mb-2"
             placeholder="Form Type - Hidden"
-          />
+          /> -->
 
         <!-- Venue Id -->
-            <input
+            <!-- <input
             type="text"
             id="Venue ID"
             class="form-control mb-2"
             placeholder="Venue ID -  Hidden"
-          />
+          /> -->
         <!-- Tagged As -->
-            <input
+            <!-- <input
             type="text"
             id="tagged-as"
             class="form-control mb-2"
             placeholder="Tagged as - Hidden"
-          />
+          /> -->
         <!-- Campaign Tag -->
-            <input
+            <!-- <input
             type="text"
             id="form-type"
             class="form-control mb-2"
             placeholder="Campaign Tag - Hidden"
-          />
+          /> -->
 
         <!-- Form ID -->
-            <input
+            <!-- <input
             type="text"
             id="form-type"
             class="form-control mb-2"
             placeholder="Form ID - Hidden"
-          />
+          /> -->
         <!-- Sign Up Date -->
-            <input placeholder="Sign Up date - Hidden" type="text" id="DOB" class="form-control datepicker mb-4" />
+            <!-- <input placeholder="Sign Up date - Hidden" type="text" id="DOB" class="form-control datepicker mb-4" /> -->
 
 
         </form>
@@ -153,8 +196,7 @@
     <!-- Start your project here-->
 
     <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
@@ -162,7 +204,5 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Data Picker Initialization -->
-    <script>$('.datepicker').pickadate();</script>
-    <div>test div</div>
   </body>
 </html>
