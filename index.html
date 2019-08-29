@@ -24,12 +24,12 @@
         <script type="text/javascript">
             $(function() {
                 $(".submit").click(function() {
-    alert('form click');
                     var CustomerFirstName = $("#CustomerFirstName").val();
                     var CustomerLastName = $("#CustomerLastName").val();
                     var Phone = $("#Phone").val();
                     var Postcode = $("#Postcode").val();
                     var CustomerEmail = $("#CustomerEmail").val();
+                    var VenueID = $("#VenueID").val();
                      var dataString = 'CustomerFirstName=' + CustomerFirstName + '&CustomerLastName=' + CustomerLastName + '&Phone=' + Phone + '&Postcode=' + Postcode + '&CustomerEmail=' + CustomerEmail;
                      console.log(dataString);
                      var myObject = new Object();
@@ -38,32 +38,44 @@
                       myObject.Phone = Phone;
                       myObject.Postcode = Postcode;
                       myObject.CustomerEmail = CustomerEmail;
+                      myObject.VenueID = VenueID;
                    // var dataString = 'CustomerFirstName=' + CustomerFirstName + '&CustomerLastName=' + CustomerLastName + '&Phone=' + Phone + '&Postcode=' + Postcode + '&CustomerEmail=' + CustomerEmail;
                     //alert(myObject);
 
-                    console.log(myObject);
+                    //console.log(myObject);
+                    //console.log(JSON.parse(myObject));
+                    //console.log(newdata);
+                    
                     var accountInfo = {
-                    "CustomerFirstName": CustomerFirstName,
-                    "CustomerLastName": CustomerLastName,
-                    "Phone": Phone,
-                    "Postcode": Postcode,
-                    "CustomerEmail": CustomerEmail
+                      "CustomerFirstName": CustomerFirstName,
+                      "CustomerLastName": CustomerLastName,
+                      "Phone": Phone,
+                      "Postcode": Postcode,
+                      "CustomerEmail": CustomerEmail
                     };
+                    var contactinfo = JSON.stringify(accountInfo);
+                    console.log(contactinfo);
+                    var token = "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJadWpJeUV4RUVJUjdWeTllZnlNSHB5NmQiLCJjbGllbnRfaWQiOiI3ajNmcWowbjBucTdrd2dmNGE5NmE4ZGIiLCJlaWQiOjEwMDAxNDU0Miwic3RhY2tfa2V5IjoiUzEwIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.HiMba_4q8FTChFQ_zaVKqoXMVOylX3-bDMyGE4cOVP8.9FqpppCZNZMDfJUA5CJz0OEcg-F6g5gDWOxijKd7ZtEw3jLsBK0_n5YUFnxJwqr4S88Y9BM-MHHBpk6jNqnshxbDzwbvhss03ORLZW0cuZVBakDXY3G98q3BK15enGnsKI5lhvOkCMQD5Bcv88sDpOy5YcxoFCSkBd1ZLVtt1kB7Xj3etzO";
                     if (CustomerFirstName == '' || Postcode == '' || Phone == '' || CustomerEmail == '') {
                         $('.success').fadeOut(200).hide();
     
                         $('.error').fadeOut(200).show();
-    
-                    } else {
+                        
+                    }
+                    
+                    else {
                         $.ajax({
                             type: "POST",
                             url: "https://mc7l7fypk60zp-h7jf6n349dqp54.rest.marketingcloudapis.com/messaging/v1/messageDefinitionSends/key:45632/send",
                             headers: {
-                            'Authorization': "Bearer " + eyJhbGciOiJIUzI1NiIsImtpZCI6IjEiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJac0pHRlBPZERLcFNZTjdjR2lkanVGSDIiLCJjbGllbnRfaWQiOiI3ajNmcWowbjBucTdrd2dmNGE5NmE4ZGIiLCJlaWQiOjEwMDAxNDU0Miwic3RhY2tfa2V5IjoiUzEwIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.T-m43B8mOB5jU-V-wiK3BEwM_XXu3Ym3BEdMresw3h4.Qc8c5n86iUpHJfFRFOxDQatHnzGv_ALOJjEA8l2M0nRXHlrh3bptUYmq64uCkM118XNJiVvPQ0TMTcBNOpftu1N9-faRYWTw2k6nBBF3S5ZkiwDqQ0gZiNsWFI_6HxfyvS83BZbW448PWK8MKD4zVQIp6K-XAngKY3Eae03U9ro3tEfhP0b,
+                            'Access-Control-Allow-Origin':'*',
+                            'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+                            'Access-Control-Allow-Headers' : 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+                            'Authorization': "Bearer " + token,
                             'Content-Type': 'application/json'
                             },
                             crossDomain: true,
-                            data: JSON.stringify(accountInfo),
+                            data: contactinfo,
                             dataType: 'json',
                             success: function(responseData, status, xhr) {
                             console.log(responseData);
@@ -87,14 +99,13 @@
     <div style="height: 100vh">
       <div class="flex-center flex-column">
         <!-- Default form subscription -->
-        <form autocomplete="off" enctype="multipart/form-data" method="post" name="form" class="text-center border border-light p-5" style="background:rgba(253,255,255,0.9); height: 80vh; overflow-y: auto">
+        <form autocomplete="on"  method="post" name="form" class="text-center border border-light p-5" style="background:rgba(253,255,255,0.9); height: 80vh; overflow-y: auto">
           <p class="h4 mb-4">Subscribe to our newsletter</p>
 
           <p>
             Join our mailing list. We'll update you with all the news from your local.
-            <hr />
-
           </p>
+           <hr />
           <!-- Name -->
           <input
             type="text"
@@ -139,7 +150,7 @@
         
         <!-- Sign in button -->
         <div class="buttons">
-          <input type="submit" value="Submit" style=" background:#0060a1; color:#FFFFFF; font-size:14px; border:1px solid #0060a1; margin-left:12px" class="submit" /><span class="error" style="display:none"> Please Enter Valid Data</span><span class="success" style="display:none"> Registration Successfully.......... Click To <a href="http://9lessons.blogspot.com" style="color:#0066CC; font-weight:bold">http://9lessons.blogspot.com</a></span>
+          <input type="submit" value="Submit" style=" background:#0060a1; color:#FFFFFF; font-size:14px; border:1px solid #0060a1; margin-left:12px" class="submit" /><span class="error" style="display:none"> Please Enter Valid Data</span><span class="success" style="display:none"> Registration Successfully Completed..........</span>
       </div>
         <!-- <button class="btn btn-info btn-block mb-3 mt-3" type="submit">Submit</button> -->
         <span class="error" style="display:none"> Please Enter Valid Data</span>
@@ -153,12 +164,12 @@
           /> -->
 
         <!-- Venue Id -->
-            <!-- <input
+            <input
             type="text"
-            id="Venue ID"
+            id="VenueID"
             class="form-control mb-2"
             placeholder="Venue ID -  Hidden"
-          /> -->
+          /> 
         <!-- Tagged As -->
             <!-- <input
             type="text"
