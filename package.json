@@ -4,7 +4,7 @@
   "description": "This package is for testing js files",
   "main": "index.js",
   "scripts": {
-    "start": "node js/rest.js",
+    "start": "node index.html",
     "test": "test"
   },
   "author": "",
