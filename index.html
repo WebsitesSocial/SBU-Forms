@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <title>SBU Forms - test</title>
     <!-- Font Awesome -->
     <link
@@ -20,7 +16,6 @@
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet" />
         <!-- JQuery -->
-        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript">
             $(function() {
                 $(".submit").click(function() {
@@ -55,7 +50,7 @@
                     };
                     var contactinfo = JSON.stringify(accountInfo);
                     console.log(contactinfo);
-                    var token = "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJadWpJeUV4RUVJUjdWeTllZnlNSHB5NmQiLCJjbGllbnRfaWQiOiI3ajNmcWowbjBucTdrd2dmNGE5NmE4ZGIiLCJlaWQiOjEwMDAxNDU0Miwic3RhY2tfa2V5IjoiUzEwIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.HiMba_4q8FTChFQ_zaVKqoXMVOylX3-bDMyGE4cOVP8.9FqpppCZNZMDfJUA5CJz0OEcg-F6g5gDWOxijKd7ZtEw3jLsBK0_n5YUFnxJwqr4S88Y9BM-MHHBpk6jNqnshxbDzwbvhss03ORLZW0cuZVBakDXY3G98q3BK15enGnsKI5lhvOkCMQD5Bcv88sDpOy5YcxoFCSkBd1ZLVtt1kB7Xj3etzO";
+                    var token = "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJaQTJqc1c1QmNEYnpUMHFxOGVwbUR0UEMiLCJjbGllbnRfaWQiOiI3ajNmcWowbjBucTdrd2dmNGE5NmE4ZGIiLCJlaWQiOjEwMDAxNDU0Miwic3RhY2tfa2V5IjoiUzEwIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.yzPyn2Wq8lDRsGAXlAS2aqDbeQsxPsQpK41LNLlZzGE.TJzxDP--flwGpeijn777NuMjFHREArkJ7kD_BJxTnmE2Y6L_MQYowUnaFVdCJBM_b-rjf1fcXErj5x2-v3nAsgaHbTwb_AXd-1Mrauxhx8ktv5WxcB8JWQZXG0noaQLPGWNQu7fXJHPkBYQDsfJegiBUkf_kDkHnfRQ1w-C89JJRW1CJEAw";
                     if (CustomerFirstName == '' || Postcode == '' || Phone == '' || CustomerEmail == '') {
                         $('.success').fadeOut(200).hide();
     
@@ -66,16 +61,14 @@
                     else {
                         $.ajax({
                             type: "POST",
+                            contentType: 'application/json',
+                            crossOrigin: true,
+                            data: contactinfo,
+                            cache :false,
                             url: "https://mc7l7fypk60zp-h7jf6n349dqp54.rest.marketingcloudapis.com/messaging/v1/messageDefinitionSends/key:45632/send",
                             headers: {
-                            'Access-Control-Allow-Origin':'*',
-                            'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-                            'Access-Control-Allow-Headers' : 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-                            'Authorization': "Bearer " + token,
-                            'Content-Type': 'application/json'
+                            'Authorization': 'Bearer'+token,
                             },
-                            crossDomain: true,
-                            data: contactinfo,
                             dataType: 'json',
                             success: function(responseData, status, xhr) {
                             console.log(responseData);
@@ -99,7 +92,7 @@
     <div style="height: 100vh">
       <div class="flex-center flex-column">
         <!-- Default form subscription -->
-        <form autocomplete="on"  method="post" name="form" class="text-center border border-light p-5" style="background:rgba(253,255,255,0.9); height: 80vh; overflow-y: auto">
+        <form autocomplete="on" ac class="text-center border border-light p-5" style="background:rgba(253,255,255,0.9); height: 80vh; overflow-y: auto">
           <p class="h4 mb-4">Subscribe to our newsletter</p>
 
           <p>
